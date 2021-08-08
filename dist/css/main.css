@@ -30,54 +30,42 @@ body {
 
 .concertina {
   margin-top: 5rem;
-  height: 70vh;
-  max-height: 100rem;
+  height: 50vh;
+  max-height: 80rem;
   min-height: 30rem;
-  overflow: hidden;
   position: relative;
+  display: flex;
+  border: 2px solid orange;
 }
-
-.concertina * {
+.concertina__item {
+  flex: 1 1 content;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+.concertina__heading {
+  border: 2px solid purple;
+  z-index: 10;
+  color: white;
   position: absolute;
-  background: url("https://source.unsplash.com/random") no-repeat center;
-  inset: 0;
+  left: 100%;
+  top: 100%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
 }
-
-.concertina div {
-  border-right: 5px solid black;
-  transition: all 1s ease-in-out;
+.concertina__heading > h2 {
+  word-wrap: none;
+  white-space: nowrap;
+  font-size: 3rem;
+  margin: 1rem 0;
+  display: inline;
 }
-.concertina div:nth-of-type(1) {
-  width: 20%;
-  z-index: 5;
+.concertina__image {
+  overflow: hidden;
+  width: 3rem;
 }
-.concertina div:nth-of-type(2) {
-  width: 40%;
-  z-index: 4;
-}
-.concertina div:nth-of-type(3) {
-  width: 60%;
-  z-index: 3;
-}
-.concertina div:nth-of-type(4) {
-  width: 80%;
-  z-index: 2;
-}
-.concertina div:nth-of-type(5) {
-  width: 100%;
-  z-index: 1;
-}
-
-.container > .concertina:hover > * {
-  width: 5%;
-}
-
-.container > .concertina:hover > *:nth-of-type(5) {
-  width: 100%;
-}
-
-.concertina:hover > :hover {
-  width: 100%;
+.concertina__item-1 > .concertina__image {
+  width: calc(90rem - (3rem * 5));
 }
 
 /*# sourceMappingURL=main.css.map */

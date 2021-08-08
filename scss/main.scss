@@ -20,6 +20,7 @@ body {
   background-color: var(--primary-color);
   height: 100vh;
   width: 100vw;
+  line-height: 1.5;
   overflow: hidden;
 }
 
@@ -35,54 +36,66 @@ body {
   height: 50vh;
   max-height: 80rem;
   min-height: 30rem;
-  // overflow: hidden;
+  overflow: hidden;
   position: relative;
   display: flex;
-  border: 2px solid orange;
 
-  & > div {
+  &__item-1 .concertina__image {
+    width: 80rem;
+  }
+
+  &:hover .concertina__image {
+    width: 5rem;
   }
 
   &__item {
-    flex: 1 1 content;
+    flex: 1 1 auto;
     position: relative;
     display: flex;
     justify-content: flex-end;
+    flex-direction: row-reverse;
+    border-right: 3px solid black;
+
+    &:hover .concertina__image {
+      width: 80rem;
+    }
   }
 
   &__heading {
-    border: 2px solid purple;
-    z-index: 10;
+    z-index: 1000;
     color: white;
-    // width: 40vh;
     position: absolute;
     left: 100%;
-    top: 100%;
+    bottom: 0;
     transform: rotate(-90deg);
-    transform-origin: top left;
-    // background-color: rgba($color: #000000, $alpha: 0.5);
+    transform-origin: bottom left;
+    cursor: pointer;
 
     & > h2 {
       word-wrap: none;
       white-space: nowrap;
       font-size: 3rem;
       margin: 1rem 0;
+      margin-left: 3rem;
       display: inline;
-      // height: 3rem;
     }
   }
 
   &__image {
-    overflow: hidden;
-    width: 3rem;
-  }
-
-  &__item-1 {
-    & > .concertina__image {
-      width: calc(90rem - (3rem * 5));
+    flex: 1 1 20%;
+    width: 5rem;
+    z-index: -1;
+    transition: width 0.8s ease-in-out;
+    & > img {
+      object-fit: cover;
+      object-position: right top;
     }
   }
 }
 
 // When I hover any item, I want earlier siblings to shrink while the hover target grows to 100%
 // hover the parent > child items not(:hover) to shrink
+
+//TODO: Make the width responsive to the page and container width.
+
+//TODO: Add additional classes to use a clip path on the first 4 divs to produce an angle instead of straight 90deg

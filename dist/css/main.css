@@ -30,23 +30,23 @@ body {
 }
 
 .concertina {
-  --image-count: 7;
+  --image-count: 5;
   --container-max-width: 80vw;
-  --image-header-width: 4rem;
+  --image-header-width: 5rem;
   margin-top: 5rem;
   height: clamp(30rem, 50vh, 60rem);
   max-height: 60rem;
   min-height: 30rem;
   width: 80vw;
-  overflow: hidden;
   position: relative;
   display: flex;
 }
-.concertina__item-1 .concertina__image {
-  width: calc( var(--container-max-width) - (var(--image-header-width) * (var(--image-count) - 1)) );
-}
 .concertina:hover .concertina__image {
   width: 5rem;
+}
+.concertina:hover .concertina__content {
+  transform: scale(0);
+  opacity: 0;
 }
 .concertina__item {
   flex: 1 1 auto;
@@ -54,11 +54,12 @@ body {
   display: flex;
   justify-content: flex-end;
   flex-direction: row-reverse;
+  overflow: hidden;
 }
-.concertina__item:hover .concertina__image, .concertina__item:focus .concertina__image {
+.concertina__item:hover .concertina__image {
   width: calc( var(--container-max-width) - (var(--image-header-width) * (var(--image-count) - 1)) );
 }
-.concertina__item:hover .concertina__content, .concertina__item:hover .concertina__content {
+.concertina__item:hover .concertina__content {
   opacity: 1;
   transform: scale(1);
   transition: transform 0.2s linear 0.4s;
@@ -119,6 +120,14 @@ body {
 .concertina__content * {
   margin: 1rem 0;
   margin-left: 1rem;
+}
+.concertina__item-1 .concertina__image {
+  width: calc( var(--container-max-width) - (var(--image-header-width) * (var(--image-count) - 1)) );
+}
+.concertina__item-1 .concertina__content {
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.2s linear 0.4s;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -32,27 +32,25 @@ body {
 }
 
 .concertina {
-  --image-count: 7;
+  --image-count: 5;
   --container-max-width: 80vw;
-  --image-header-width: 4rem;
+  --image-header-width: 5rem;
   margin-top: 5rem;
   height: clamp(30rem, 50vh, 60rem);
   max-height: 60rem;
   min-height: 30rem;
   width: 80vw;
-  overflow: hidden;
   position: relative;
   display: flex;
 
-  &__item-1 .concertina__image {
-    width: calc(
-      var(--container-max-width) -
-        (var(--image-header-width) * (var(--image-count) - 1))
-    );
-  }
-
-  &:hover .concertina__image {
-    width: 5rem;
+  &:hover {
+    & .concertina__image {
+      width: 5rem;
+    }
+    & .concertina__content {
+      transform: scale(0);
+      opacity: 0;
+    }
   }
 
   &__item {
@@ -61,16 +59,15 @@ body {
     display: flex;
     justify-content: flex-end;
     flex-direction: row-reverse;
+    overflow: hidden;
 
-    &:hover .concertina__image,
-    &:focus .concertina__image {
+    &:hover .concertina__image {
       width: calc(
         var(--container-max-width) -
           (var(--image-header-width) * (var(--image-count) - 1))
       );
     }
 
-    &:hover .concertina__content,
     &:hover .concertina__content {
       opacity: 1;
       transform: scale(1);
@@ -139,11 +136,27 @@ body {
       margin-left: 1rem;
     }
   }
+
+  &__item-1 {
+    & .concertina__image {
+      width: calc(
+        var(--container-max-width) -
+          (var(--image-header-width) * (var(--image-count) - 1))
+      );
+    }
+    & .concertina__content {
+      transform: scale(1);
+      opacity: 1;
+      transition: transform 0.2s linear 0.4s;
+    }
+  }
 }
 
 // When I hover any item, I want earlier siblings to shrink while the hover target grows to 100%
 // hover the parent > child items not(:hover) to shrink
 
-//TODO: Make the width responsive to the page and container width.
+//TODO Make the width responsive to the page and container width.
 
-//TODO: Add additional classes to use a clip path on the first 4 divs to produce an angle instead of straight 90deg
+//TODO Add additional classes to use a clip path on the first 4 divs to produce an angle instead of straight 90deg
+
+//TODO Add focus state to that does the same as hover without conflicting with hover.

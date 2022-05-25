@@ -27,9 +27,15 @@ body {
 
 .container {
   width: 80vw;
-  // min-width: 50rem;
   max-width: 110rem;
   margin: auto;
+
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100vw;
+  }
 }
 
 .concertina {
@@ -40,7 +46,7 @@ body {
   height: var(--concertina-height);
   overflow: hidden;
   display: flex;
-  // comment in the below to reverse the who thing.
+  // comment in the below to reverse the whole thing.
   //flex-direction: row-reverse;
 
   &__item {
@@ -50,17 +56,17 @@ body {
     transition: flex-basis 1s ease;
     max-height: var(--concertina-height);
 
-    &-1 {
+    &-primary {
       flex-basis: var(--open-panel-width);
 
       & > .concertina__content {
         & > div {
-          transform: scale(1);
-          visibility: visible;
+          animation: animate-visibility 1s forwards linear 0.5s;
         }
       }
     }
   }
+
   &__heading {
     color: white;
     position: absolute;
@@ -77,6 +83,7 @@ body {
       font-size: 2.5rem;
     }
   }
+
   &__image {
     position: absolute;
     top: 0;
@@ -88,6 +95,7 @@ body {
       // max-height: inherit;
     }
   }
+
   &__content {
     position: absolute;
     inset: 0;
@@ -103,44 +111,46 @@ body {
       transparent
     );
     & > div {
-      transition: transform 1s ease-out;
-      transition-delay: 1;
-      transform: scale(0);
       transform-origin: left center;
-      visibility: hidden;
+      opacity: 0;
     }
   }
 
   // The following have been sperated to allow the hover effect to work.
-  &:hover > * {
+  &:hover > *:not(:hover),
+  &:focus-within > *:not(:focus){
     flex-basis: var(--bar-width);
 
     & > .concertina__content {
       & > div {
-        transform: scale(0);
-        visibility: hidden;
+        animation: animate-invisibility;
       }
     }
   }
 
-  &__item:hover {
+  &__item:hover:not(.concertina__item-primary),
+  &__item:focus:not(.concertina__item-primary){
     flex-basis: var(--open-panel-width);
 
     & > .concertina__content {
       & > div {
-        transform: scale(1);
-        visibility: visible;
+        animation: animate-visibility 1s forwards 0.5s;
       }
     }
   }
+
+  @keyframes animate-visibility {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes animate-invisibility {
+    to {
+      opacity: 0;
+    }
+  }
+
 }
 
-// When I hover any item, I want earlier siblings to shrink while the hover target grows to 100%
-// hover the parent > child items not(:hover) to shrink
-
-//TODO Make the width responsive to the page and container width.
-
 //TODO Add additional classes to use a clip path on the first 4 divs to produce an angle instead of straight 90deg
-
-//TODO Add focus state to that does the same as hover without conflicting with hover.
-//TODO Add min width to concertina at various break points

@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #0086e5;
+  --primary-color: #333;
 }
 
 *,
@@ -29,6 +29,11 @@ body {
   margin: auto;
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100vw;
+  }
+}
 .concertina {
   --bar-width: calc(max(5%, 6rem));
   --open-panel-width: 90%;
@@ -45,12 +50,11 @@ body {
   transition: flex-basis 1s ease;
   max-height: var(--concertina-height);
 }
-.concertina__item-1 {
+.concertina__item-primary {
   flex-basis: var(--open-panel-width);
 }
-.concertina__item-1 > .concertina__content > div {
-  transform: scale(1);
-  visibility: visible;
+.concertina__item-primary > .concertina__content > div {
+  animation: animate-visibility 1s forwards linear 0.5s;
 }
 .concertina__heading {
   color: white;
@@ -87,25 +91,30 @@ body {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
 }
 .concertina__content > div {
-  transition: transform 1s ease-out;
-  transition-delay: 1;
-  transform: scale(0);
   transform-origin: left center;
-  visibility: hidden;
+  opacity: 0;
 }
-.concertina:hover > * {
+.concertina:hover > *:not(:hover), .concertina:focus-within > *:not(:focus) {
   flex-basis: var(--bar-width);
 }
-.concertina:hover > * > .concertina__content > div {
-  transform: scale(0);
-  visibility: hidden;
+.concertina:hover > *:not(:hover) > .concertina__content > div, .concertina:focus-within > *:not(:focus) > .concertina__content > div {
+  animation: animate-invisibility;
 }
-.concertina__item:hover {
+.concertina__item:hover:not(.concertina__item-primary), .concertina__item:focus:not(.concertina__item-primary) {
   flex-basis: var(--open-panel-width);
 }
-.concertina__item:hover > .concertina__content > div {
-  transform: scale(1);
-  visibility: visible;
+.concertina__item:hover:not(.concertina__item-primary) > .concertina__content > div, .concertina__item:focus:not(.concertina__item-primary) > .concertina__content > div {
+  animation: animate-visibility 1s forwards 0.5s;
+}
+@keyframes animate-visibility {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes animate-invisibility {
+  to {
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
